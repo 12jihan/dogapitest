@@ -1,0 +1,27 @@
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #333;
+  height: 3.5rem;
+}
+
+.links-container {
+  color: white;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+
+  .list-item {
+    padding: 1rem;
+    transition: all 500ms ease-in-out;
+    cursor: pointer;
+    a {
+      color: white;
+    }
+
+    &:hover {
+      background-color: #999;
+      color: black;
+    }
+  }
+}
