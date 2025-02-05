@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const useApi = (url: string) => {
+const useApi = (urlName: string | false, url: string) => {
   const [data, setData] = useState(null);
   const [_error, _setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -9,14 +9,18 @@ const useApi = (url: string) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(url);
-      setData(response.data);
-      console.log("useapi url:", url);
-      console.log("useapi data:", response.data);
-      // localStorage.setItem("cached_data", JSON.stringify(response.data)); 
-      } catch (error) {
+      if(urlName != false && localStorage.getItem("cached_" + urlName) == null) {
+        const response = await axios.get(url);
+        setData(response.data);
+        console.log("useapi url:", url);
+        console.log("useapi data:", response.data);
+        localStorage.setItem("cached_" + urlName, JSON.stringify(response.data));
+      } else {
+        setData(JSON.parse(localStorage.getItem("cached_" + urlName)!))
+      }
+    } catch (error: any) {
       _setError("error");
-      console.error(_error);
+      console.error("err: ", _error);
     } finally {
       setLoading(false);
     }

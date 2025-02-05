@@ -18,10 +18,8 @@ const DataComponent = ({ api_data }: any) => {
   return (
     <div className="item-container">
       {api_data.data.map((breed: any) => (
-        <div className="item">
-          <Link key={breed.id} to={"/" + breed.id}>
-            {breed.attributes.name}
-          </Link>
+        <div key={breed.id} className="item">
+          <Link to={"/" + breed.id}>{breed.attributes.name}</Link>
         </div>
       ))}
     </div>
@@ -30,7 +28,8 @@ const DataComponent = ({ api_data }: any) => {
 
 function HomeComponent(): ReactElement {
   const { data, loading, refetch, error } = useApi(
-    "https://dogapi.dog/api/v2/breeds",
+    "breeds",
+    "https://dogapi.dog/api/v2/breeds"
   );
 
   useEffect(() => {
@@ -47,7 +46,6 @@ function HomeComponent(): ReactElement {
   }
 
   if (data == null) {
-    console.log("data is null", data);
     return <div>Data received is null</div>;
   }
 

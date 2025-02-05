@@ -5,7 +5,8 @@ import useApi from "../custom-hooks/useApi";
 function BreedProfileComponent(): ReactElement {
   const { id } = useParams();
   const { data, loading, error, refetch } = useApi(
-    "https://dogapi.dog/api/v2/breeds/" + id,
+    "dogProfile_" + id,
+    "https://dogapi.dog/api/v2/breeds/" + id
   );
 
   useEffect(() => {
