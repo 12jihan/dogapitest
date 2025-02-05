@@ -41,18 +41,17 @@ function HomeComponent(): ReactElement {
     return <p>loading...</p>;
   }
 
-  if (error && error != null) {
+  if (error) {
     console.log("data error", data);
     return ErrorComponent();
   }
 
   if (data == null) {
     console.log("data is null", data);
-    return ErrorComponent();
+    return <div>Data received is null</div>;
   }
 
   return <DataComponent api_data={data} />;
-  // return  <p>hi</p>;
 }
 
 export default HomeComponent;

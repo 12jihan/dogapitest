@@ -13,10 +13,10 @@ const useApi = (url: string) => {
       setData(response.data);
       console.log("useapi url:", url);
       console.log("useapi data:", response.data);
-      // localStorage.setItem("cached_data", JSON.stringify(response.data));
-    } catch (error) {
+      // localStorage.setItem("cached_data", JSON.stringify(response.data)); 
+      } catch (error) {
       _setError("error");
-      console.error(error);
+      console.error(_error);
     } finally {
       setLoading(false);
     }
